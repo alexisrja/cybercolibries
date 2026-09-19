@@ -43,3 +43,5 @@ next-env.d.ts
 
 # Material fuente de marca (originales pesados, no necesarios para el build)
 rescursos/
+
+.vercel
