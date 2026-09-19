@@ -1,0 +1,61 @@
+---
+title: "¿Qué hace realmente un analista SOC?"
+excerpt: "Más allá de mirar pantallas con alertas: cómo es un turno, qué decisiones se toman y qué habilidades importan de verdad para tu primer puesto en un Security Operations Center."
+category: "Artículos"
+tags: ["SOC", "Blue Team", "Carrera"]
+date: "2026-08-28"
+author:
+  name: "Equipo CyberColibríes"
+  role: "Comunidad Labs"
+---
+
+Cuando alguien imagina un SOC (Security Operations Center), suele pensar en una sala oscura con pantallas gigantes. La realidad es menos cinematográfica y mucho más interesante: un analista SOC pasa la mayor parte del tiempo **tomando decisiones con información incompleta**.
+
+## Un turno, en tres verbos
+
+El trabajo de un analista de nivel 1 se puede resumir en tres verbos:
+
+1. **Triagar**: revisar alertas que genera el SIEM o el EDR y decidir cuáles merecen atención.
+2. **Investigar**: reunir contexto (logs, historial del usuario, reputación de una IP) para confirmar o descartar la alerta.
+3. **Escalar o cerrar**: documentar la decisión y, si hace falta, pasar el caso al siguiente nivel con toda la evidencia.
+
+La mayoría de alertas terminan siendo falsos positivos. Eso no significa que el trabajo sea aburrido: significa que **tu criterio es el producto**.
+
+## Lo que no te dicen las ofertas de empleo
+
+Las vacantes piden experiencia con herramientas concretas (Splunk, Sentinel, Elastic, CrowdStrike…). Son importantes, pero se aprenden en semanas. Lo que marca la diferencia es:
+
+- **Leer logs con calma** y entender qué es normal en ese entorno.
+- **Formular hipótesis** en lugar de buscar confirmar la primera idea.
+- **Escribir tickets claros**, porque alguien más tendrá que leerlos a las 3 a. m.
+- **Conocer MITRE ATT&CK** lo suficiente para ubicar una técnica y anticipar el siguiente paso de un atacante.
+
+<Callout type="tip" title="Ejercicio rápido">
+  Toma cualquier alerta de ejemplo y escribe en tres líneas: qué pasó, qué evidencia lo respalda y qué harías después. Si no puedes hacerlo en tres líneas, todavía no terminaste de investigar.
+</Callout>
+
+## Un ejemplo de triage
+
+Supón que llega esta alerta: *múltiples inicios de sesión fallidos seguidos de uno exitoso para el usuario `m.lopez` desde una IP extranjera*.
+
+Las preguntas que te harías, en orden:
+
+| Pregunta | Dónde buscar |
+| --- | --- |
+| ¿El usuario viaja o usa VPN comercial? | Historial de inicios de sesión, RR. HH. |
+| ¿La IP tiene mala reputación? | Fuentes de threat intelligence |
+| ¿Qué hizo la sesión después de entrar? | Logs de la aplicación, correo, EDR |
+| ¿Hay más usuarios afectados desde la misma IP? | Búsqueda en el SIEM |
+
+Si la sesión exitosa descargó buzones completos o creó reglas de reenvío de correo, ya no es una alerta: es un incidente.
+
+## Cómo empezar
+
+En el **Researcher Program** el módulo 04 está dedicado a seguridad defensiva y SOC, y el challenge *Log Hunt* te pone exactamente en esta situación. Si quieres practicar hoy mismo, empieza por aprender a leer los registros de autenticación de tu propio sistema:
+
+```bash
+# Linux (systemd): intentos de SSH fallidos en las últimas 24 h
+journalctl -u ssh --since "24 hours ago" | grep "Failed password"
+```
+
+La primera vez que entiendas por qué alguien intenta entrar a tu servidor a las 4 de la mañana, vas a entender por qué existe un SOC.
