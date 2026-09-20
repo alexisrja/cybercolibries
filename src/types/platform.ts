@@ -1,20 +1,19 @@
 /**
- * Modelo de dominio de la futura plataforma CyberColibríes.
+ * Modelo de dominio de una futura plataforma de CyberColibríes.
  *
- * Nada de esto se usa todavía en la UI: define el contrato que seguirán
- * la base de datos (Supabase/Postgres), la API y los componentes cuando
- * se habiliten registro, progreso, badges, certificados y dashboard.
- * Mantenerlo aquí evita que el sitio institucional tenga que reescribirse.
+ * Nada de esto se usa todavía: define el contrato que seguirían la base de
+ * datos, la API y los componentes si más adelante se habilitan registro,
+ * progreso y certificados. Mantenerlo aquí evita rehacer el sitio.
  */
 
-import type { ChallengeStatus, Difficulty, SocialLinks } from "./index";
+import type { SocialLinks } from "./index";
 
 export type UUID = string;
 export type ISODate = string;
 
 /* ---------------------------------------------------------------- Identidad */
 
-export type UserRole = "researcher" | "mentor" | "admin" | "partner";
+export type UserRole = "participante" | "mentor" | "admin" | "aliado";
 
 export interface UserProfile {
   id: UUID;
@@ -28,7 +27,7 @@ export interface UserProfile {
   createdAt: ISODate;
 }
 
-/* ---------------------------------------------------------------- Educación */
+/* ---------------------------------------------------------------- Formación */
 
 export interface Lesson {
   id: UUID;
@@ -37,51 +36,22 @@ export interface Lesson {
   title: string;
   order: number;
   durationMinutes: number;
-  resourceIds: UUID[];
-}
-
-export interface Resource {
-  id: UUID;
-  kind: "video" | "lectura" | "lab" | "herramienta" | "plantilla";
-  title: string;
-  url: string;
 }
 
 export interface Enrollment {
   id: UUID;
   userId: UUID;
-  programSlug: string;
+  initiativeSlug: string;
   generation: string;
   status: "postulado" | "activo" | "completado" | "pausado";
   startedAt?: ISODate;
   completedAt?: ISODate;
 }
 
-/* ---------------------------------------------------------------- Progreso */
-
 export interface LessonProgress {
   userId: UUID;
   lessonId: UUID;
   completedAt: ISODate;
-}
-
-export interface ChallengeAttempt {
-  id: UUID;
-  userId: UUID;
-  challengeSlug: string;
-  status: "en-progreso" | "entregado" | "evaluado";
-  score?: number;
-  feedback?: string;
-  reviewerId?: UUID;
-  submittedAt?: ISODate;
-}
-
-export interface ChallengeRecord {
-  slug: string;
-  difficulty: Difficulty;
-  status: ChallengeStatus;
-  maxScore: number;
-  rubric: { criterion: string; weight: number }[];
 }
 
 /* ---------------------------------------------------------------- Logros */
@@ -90,20 +60,13 @@ export interface Badge {
   id: string;
   name: string;
   description: string;
-  icon: string;
   criteria: string;
-}
-
-export interface UserBadge {
-  userId: UUID;
-  badgeId: string;
-  awardedAt: ISODate;
 }
 
 export interface Certificate {
   id: UUID;
   userId: UUID;
-  programSlug: string;
+  initiativeSlug: string;
   issuedAt: ISODate;
   verificationCode: string;
 }
@@ -113,7 +76,7 @@ export interface Certificate {
 export interface MentorshipSession {
   id: UUID;
   mentorId: UUID;
-  researcherIds: UUID[];
+  participantIds: UUID[];
   topic: string;
   scheduledAt: ISODate;
   status: "programada" | "realizada" | "cancelada";
@@ -124,16 +87,4 @@ export interface EventRegistration {
   userId: UUID;
   registeredAt: ISODate;
   attended?: boolean;
-}
-
-/* ---------------------------------------------------------------- Dashboard */
-
-export interface DashboardSummary {
-  userId: UUID;
-  completedLessons: number;
-  totalLessons: number;
-  challengesSolved: number;
-  points: number;
-  badges: UserBadge[];
-  recentActivity: { kind: string; label: string; at: ISODate }[];
 }

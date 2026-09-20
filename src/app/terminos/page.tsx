@@ -18,13 +18,13 @@ export default function TermsPage() {
     >
       <h2>Uso ético del conocimiento</h2>
       <p>
-        Todo el contenido, laboratorios y challenges de CyberColibríes tienen fines educativos. Las técnicas ofensivas solo
+        Todo el contenido, las actividades y los ejercicios de CyberColibríes tienen fines educativos. Las técnicas ofensivas solo
         deben practicarse en entornos propios o con autorización explícita y por escrito. El uso indebido es
         responsabilidad exclusiva de quien lo realiza.
       </p>
       <h2>Contenido</h2>
       <p>
-        Salvo que se indique lo contrario, los artículos de Labs pueden compartirse citando la fuente y a su autor. Las
+        Salvo que se indique lo contrario, el contenido publicado por la comunidad puede compartirse citando la fuente y a su autor. Las
         marcas y el logotipo de CyberColibríes no pueden usarse sin autorización.
       </p>
       <h2>Código de conducta</h2>

@@ -1,13 +1,12 @@
-import "server-only";
 import type { ContactInput } from "@/features/contact/schema";
 
 export type ContactResult = { ok: true } | { ok: false; reason: "delivery_failed" };
 
 /**
- * Entrega de mensajes de contacto.
+ * Entrega de los mensajes del formulario de Participa.
  *
- * - Si `CONTACT_WEBHOOK_URL` está definida, se envía un POST JSON (compatible
- *   con n8n, Make, Zapier, Slack workflows o una Edge Function de Supabase).
+ * - Con `CONTACT_WEBHOOK_URL` definida, se envía un POST JSON (compatible con
+ *   n8n, Make, Zapier, Slack workflows o una Edge Function de Supabase).
  * - Sin configuración, en desarrollo se registra en consola.
  *
  * Para guardar en base de datos, reemplazar por un insert en Supabase

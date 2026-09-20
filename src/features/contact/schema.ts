@@ -1,14 +1,6 @@
 import { z } from "zod";
 
-export const PROFILE_VALUES = [
-  "researcher",
-  "mentor",
-  "colaborador",
-  "universidad",
-  "empresa",
-  "speaker",
-  "otro",
-] as const;
+export const PROFILE_VALUES = ["aprender", "compartir", "mentor", "organizacion", "otro"] as const;
 
 /** Esquema compartido entre el formulario (cliente) y la API (servidor). */
 export const contactSchema = z.object({

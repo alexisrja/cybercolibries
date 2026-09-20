@@ -1,36 +1,24 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/site";
-import { getChallenges } from "@/services/challenges.service";
-import { getAllPostMeta } from "@/services/content.service";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [posts, challenges] = await Promise.all([getAllPostMeta(), getChallenges()]);
+export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: absoluteUrl("/"), lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: absoluteUrl("/programas/researcher-program"), lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: absoluteUrl("/challenges"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: absoluteUrl("/aprende"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    ...["/privacidad", "/terminos", "/cookies"].map((path) => ({
-      url: absoluteUrl(path),
-      changeFrequency: "yearly" as const,
-      priority: 0.2,
-    })),
+  const pages: { path: string; priority: number; freq: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
+    { path: "/", priority: 1, freq: "weekly" },
+    { path: "/comunidad", priority: 0.9, freq: "monthly" },
+    { path: "/iniciativas", priority: 0.9, freq: "monthly" },
+    { path: "/iniciativas/researcher-program", priority: 0.8, freq: "monthly" },
+    { path: "/impacto", priority: 0.8, freq: "monthly" },
+    { path: "/participa", priority: 0.9, freq: "monthly" },
+    { path: "/privacidad", priority: 0.2, freq: "yearly" },
+    { path: "/terminos", priority: 0.2, freq: "yearly" },
+    { path: "/cookies", priority: 0.2, freq: "yearly" },
   ];
 
-  return [
-    ...staticRoutes,
-    ...posts.map((p) => ({
-      url: absoluteUrl(`/aprende/${p.slug}`),
-      lastModified: new Date(p.updated ?? p.date),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-    ...challenges.map((c) => ({
-      url: absoluteUrl(`/challenges/${c.slug}`),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
-  ];
+  return pages.map(({ path, priority, freq }) => ({
+    url: absoluteUrl(path),
+    lastModified: now,
+    changeFrequency: freq,
+    priority,
+  }));
 }

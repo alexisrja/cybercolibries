@@ -8,20 +8,15 @@ import { ArrowUpRight, Menu } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { Modal, ModalClose, ModalContent, ModalTrigger } from "@/components/ui/modal";
-import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { mainNav, siteConfig } from "@/lib/site";
 import { trackAttrs } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
 
-const sectionIds = mainNav.flatMap((i) => (i.sectionId ? [i.sectionId] : []));
-
 export function Navbar() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const active = useScrollSpy(sectionIds, isHome);
 
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.3 });
@@ -33,11 +28,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isActive = (href: string, sectionId?: string) => {
-    if (isHome && sectionId) return active === sectionId;
-    if (!href.startsWith("/#")) return pathname === href || pathname.startsWith(`${href}/`);
-    return false;
-  };
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -60,14 +51,14 @@ export function Navbar() {
 
           <ul className="hidden items-center gap-1 lg:flex">
             {mainNav.map((item) => {
-              const current = isActive(item.href, item.sectionId);
+              const current = isActive(item.href);
               return (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    aria-current={current ? (item.sectionId ? "location" : "page") : undefined}
+                    aria-current={current ? "page" : undefined}
                     className={cn(
-                      "relative rounded-full px-3.5 py-2 text-sm transition-colors",
+                      "relative inline-flex min-h-11 items-center rounded-full px-4 text-sm transition-colors",
                       current ? "text-fg" : "text-muted hover:text-fg",
                     )}
                   >
@@ -75,7 +66,7 @@ export function Navbar() {
                     <span
                       aria-hidden
                       className={cn(
-                        "absolute inset-x-3.5 -bottom-0.5 h-px origin-center bg-iri transition-transform duration-500",
+                        "absolute inset-x-4 bottom-1.5 h-px origin-center bg-iri transition-transform duration-500",
                         current ? "scale-x-100" : "scale-x-0",
                       )}
                     />
@@ -88,7 +79,7 @@ export function Navbar() {
           <div className="flex items-center gap-1.5">
             <ThemeToggle />
             <Button asChild size="sm" className="hidden sm:inline-flex">
-              <Link href="/#participa" {...trackAttrs("join_click", "Únete", "navbar")}>
+              <Link href="/participa" {...trackAttrs("join_click", "Únete", "navbar")}>
                 Únete
               </Link>
             </Button>
@@ -108,23 +99,20 @@ export function Navbar() {
                   <Logo id="menu" />
                 </div>
                 <ul className="mt-10 flex flex-col">
-                  {mainNav.map((item, i) => {
-                    const current = isActive(item.href, item.sectionId);
+                  {mainNav.map((item) => {
+                    const current = isActive(item.href);
                     return (
                       <li key={item.href}>
                         <ModalClose asChild>
                           <Link
                             href={item.href}
-                            aria-current={current ? "location" : undefined}
+                            aria-current={current ? "page" : undefined}
                             className={cn(
-                              "flex items-center justify-between border-b border-line py-4 font-display text-lg tracking-tight transition-colors",
+                              "flex min-h-14 items-center justify-between border-b border-line font-display text-lg tracking-tight transition-colors",
                               current ? "text-fg" : "text-muted hover:text-fg",
                             )}
                           >
-                            <span className="flex items-baseline gap-3">
-                              <span className="font-mono text-xs text-subtle">{String(i).padStart(2, "0")}</span>
-                              {item.label}
-                            </span>
+                            {item.label}
                             {current && <span aria-hidden className="size-1.5 rounded-full bg-teal" />}
                           </Link>
                         </ModalClose>
@@ -135,7 +123,7 @@ export function Navbar() {
                 <div className="mt-auto space-y-4 pt-8">
                   <ModalClose asChild>
                     <Button asChild size="lg" className="w-full">
-                      <Link href="/#participa" {...trackAttrs("join_click", "Únete", "mobile_menu")}>
+                      <Link href="/participa" {...trackAttrs("join_click", "Únete", "mobile_menu")}>
                         Únete a la comunidad <ArrowUpRight />
                       </Link>
                     </Button>

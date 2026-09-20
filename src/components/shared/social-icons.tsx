@@ -45,7 +45,4 @@ export const DiscordIcon = (p: P) => (
 export const socialIcons: Record<SocialNetwork, { label: string; Icon: ComponentType<P> }> = {
   linkedin: { label: "LinkedIn", Icon: LinkedInIcon },
   instagram: { label: "Instagram", Icon: InstagramIcon },
-  github: { label: "GitHub", Icon: GitHubIcon },
-  youtube: { label: "YouTube", Icon: YouTubeIcon },
-  discord: { label: "Discord", Icon: DiscordIcon },
 };

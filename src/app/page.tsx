@@ -1,53 +1,83 @@
-import { Hero } from "@/sections/hero";
-import { About } from "@/sections/about";
-import { Initiatives } from "@/sections/initiatives";
-import { ResearcherProgram } from "@/sections/researcher-program";
-import { Methodology } from "@/sections/methodology";
-import { Challenges } from "@/sections/challenges";
-import { Community } from "@/sections/community";
-import { Mentors } from "@/sections/mentors";
-import { Impact } from "@/sections/impact";
-import { Alliances } from "@/sections/alliances";
-import { LabsPreview } from "@/sections/labs-preview";
-import { Participate } from "@/sections/participate";
-import { Contact } from "@/sections/contact";
-import { partnerProfiles, participationPaths } from "@/data/institutional";
-import { getChallenges } from "@/services/challenges.service";
-import { getCommunity, getMentors, getStories, getUpcomingEvents } from "@/services/community.service";
-import { getLatestPosts } from "@/services/content.service";
-import { getMetricsSnapshot } from "@/services/metrics.service";
-import { getMethodology, getProgram } from "@/services/program.service";
+import { InitiativeCard } from "@/components/cards/initiative-card";
+import { CtaBand, TaglineStrip } from "@/components/shared/cta-band";
+import { Reveal } from "@/components/shared/reveal";
+import { Section, SectionHeader } from "@/components/shared/section";
+import { Testimonials } from "@/components/shared/testimonials";
+import { ValueGrid } from "@/components/shared/value-grid";
+import { HomeHero } from "@/sections/home-hero";
+import { home, whatWeDo } from "@/data/content";
+import { buildMetadata } from "@/lib/seo";
+import { getInitiatives, getTestimonials } from "@/services/content.service";
+
+export const metadata = buildMetadata({
+  title: "CyberColibríes · Comunidad de ciberseguridad",
+  description:
+    "Comunidad que impulsa nuevas generaciones de talento en ciberseguridad. Aprendemos, compartimos conocimiento y creamos oportunidades.",
+  path: "/",
+});
 
 export default async function HomePage() {
-  const [program, methodology, challenges, community, events, mentors, snapshot, stories, posts] = await Promise.all([
-    getProgram("researcher-program"),
-    getMethodology(),
-    getChallenges(),
-    getCommunity(),
-    getUpcomingEvents(),
-    getMentors(),
-    getMetricsSnapshot(),
-    getStories(),
-    getLatestPosts(3),
-  ]);
-
-  const heroStats = snapshot.metrics.filter((m) => ["trained", "mentors", "generations", "challenges"].includes(m.id));
+  const [initiatives, testimonials] = await Promise.all([getInitiatives(), getTestimonials()]);
 
   return (
     <>
-      <Hero stats={heroStats} />
-      <About />
-      <Initiatives />
-      {program && <ResearcherProgram program={program} />}
-      <Methodology steps={methodology.steps} skills={methodology.skills} />
-      <Challenges challenges={challenges} />
-      <Community activities={community.activities} gallery={community.gallery} events={events} />
-      <Mentors mentors={mentors} />
-      <Impact snapshot={snapshot} stories={stories} />
-      <Alliances profiles={partnerProfiles} />
-      <LabsPreview posts={posts} />
-      <Participate paths={participationPaths} />
-      <Contact />
+      <HomeHero />
+
+      <Section id="que-es" labelledBy="que-es-title">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+          <SectionHeader id="que-es-title" eyebrow="Comunidad" title={home.whatIs.title} />
+          <Reveal delay={0.08} className="space-y-5 text-[1.05rem] leading-relaxed text-muted sm:text-lg">
+            {home.whatIs.paragraphs.map((text) => (
+              <p key={text}>{text}</p>
+            ))}
+          </Reveal>
+        </div>
+        <ValueGrid items={whatWeDo} className="mt-12" />
+      </Section>
+
+      <Section id="iniciativas" labelledBy="iniciativas-title" className="border-y border-line bg-elevated/30">
+        <SectionHeader
+          id="iniciativas-title"
+          eyebrow="Iniciativas"
+          title="Nuestras iniciativas"
+          description="Distintas formas de aprender, colaborar y generar impacto en ciberseguridad."
+        />
+        <ul className="mt-12 grid gap-4 md:grid-cols-3">
+          {initiatives.map((initiative, i) => (
+            <Reveal as="li" key={initiative.slug} delay={i * 0.07}>
+              <InitiativeCard initiative={initiative} />
+            </Reveal>
+          ))}
+        </ul>
+      </Section>
+
+      {testimonials.length > 0 && (
+        <Section id="testimonios" labelledBy="testimonios-title">
+          <SectionHeader
+            id="testimonios-title"
+            eyebrow="Testimonios"
+            title="Historias reales de personas que forman parte de CyberColibríes."
+          />
+          <div className="mt-12">
+            <Testimonials items={testimonials} />
+          </div>
+        </Section>
+      )}
+
+      <Section id="idea" labelledBy="idea-title">
+        <SectionHeader
+          id="idea-title"
+          eyebrow={home.idea.eyebrow}
+          title={home.idea.title}
+          description={home.idea.body}
+          align="center"
+        />
+        <div className="mt-6">
+          <TaglineStrip />
+        </div>
+      </Section>
+
+      <CtaBand {...home.closing} location="home_closing" />
     </>
   );
 }

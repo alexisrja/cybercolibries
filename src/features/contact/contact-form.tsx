@@ -6,7 +6,7 @@ import { Suspense, useRef, useState, type FormEvent } from "react";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FieldError, Input, Label, Select, Textarea } from "@/components/ui/field";
-import { participationLabels } from "@/data/institutional";
+import { participationLabels } from "@/data/content";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { PROFILE_VALUES, contactSchema, toFieldErrors, type ContactErrors, type ContactField } from "./schema";

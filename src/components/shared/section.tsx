@@ -15,26 +15,25 @@ interface SectionProps {
 
 export function Section({ id, className, children, labelledBy }: SectionProps) {
   return (
-    <section id={id} aria-labelledby={labelledBy} className={cn("relative py-20 sm:py-24 lg:py-32", className)}>
+    <section id={id} aria-labelledby={labelledBy} className={cn("relative py-16 sm:py-20 lg:py-24", className)}>
       <Container>{children}</Container>
     </section>
   );
 }
 
 interface SectionHeaderProps {
-  /** Ruta tipo terminal que ubica al visitante dentro del ecosistema. */
-  path: string;
+  eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
   id?: string;
   align?: "left" | "center";
   className?: string;
-  as?: "h1" | "h2";
+  as?: "h2" | "h3";
   children?: ReactNode;
 }
 
 export function SectionHeader({
-  path,
+  eyebrow,
   title,
   description,
   id,
@@ -45,20 +44,25 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <Reveal className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
-      <p className={cn("hud-label flex items-center gap-2", align === "center" && "justify-center")}>
-        <span aria-hidden className="text-teal">
-          ~/
-        </span>
-        {path}
-        <span aria-hidden className="inline-block h-3 w-1.5 bg-teal/70 motion-safe:animate-pulse" />
-      </p>
+      {eyebrow && (
+        <p className={cn("hud-label flex items-center gap-2", align === "center" && "justify-center")}>
+          <span aria-hidden className="h-px w-6 bg-teal" />
+          {eyebrow}
+        </p>
+      )}
       <Heading
         id={id}
-        className="mt-4 font-display text-[clamp(1.85rem,4.2vw,3.1rem)] leading-[1.08] font-medium tracking-[-0.025em] text-fg"
+        className={cn(
+          "font-display font-medium tracking-tight text-fg",
+          eyebrow && "mt-4",
+          Heading === "h2"
+            ? "text-[clamp(1.6rem,4vw,2.6rem)] leading-[1.12]"
+            : "text-[clamp(1.35rem,2.6vw,1.75rem)] leading-tight",
+        )}
       >
         {title}
       </Heading>
-      {description && <p className="mt-5 text-[1.075rem] leading-relaxed text-muted sm:text-lg">{description}</p>}
+      {description && <p className="mt-5 text-[1.05rem] leading-relaxed text-muted sm:text-lg">{description}</p>}
       {children}
     </Reveal>
   );

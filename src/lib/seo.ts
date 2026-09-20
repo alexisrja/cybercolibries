@@ -88,11 +88,6 @@ export function websiteSchema() {
     url: siteConfig.url,
     inLanguage: "es",
     publisher: { "@id": organizationId },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteConfig.url}/aprende?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
