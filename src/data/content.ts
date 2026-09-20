@@ -65,11 +65,27 @@ export const whatWeDo: ValueCard[] = [
 ];
 
 /**
- * Testimonios de la página de Inicio.
- * Vacío a propósito: el documento prohíbe publicar textos de ejemplo.
- * Al agregar entradas reales y autorizadas, la sección aparece sola.
+ * Testimonios reales compartidos para su publicación por la comunidad.
+ * Las citas se conservan literalmente; los testimonios en video no se
+ * transcriben ni resumen para no atribuir palabras que no fueron verificadas.
  */
-export const testimonials: Testimonial[] = [];
+export const testimonials: Testimonial[] = [
+  {
+    id: "karla-susana-martinez",
+    quote:
+      "Definitivamente, este curso fue el que me abrió las puertas al mundo de la ciberseguridad y me ayudó a conseguir mi primer empleo en dicha área.",
+    name: "Karla Susana Martínez",
+    context: "Analista de ciberseguridad · Primera generación",
+    photo: "/testimonials/karla-martinez.jpg",
+  },
+  {
+    id: "isaac-leyva",
+    name: "Isaac Leyva",
+    context: "Primera generación · Testimonio en video",
+    video: "/testimonials/isaac-leiva.mp4",
+    poster: "/testimonials/isaac-leiva-poster.webp",
+  },
+];
 
 /* ------------------------------------------------------------------ Comunidad */
 
@@ -222,8 +238,8 @@ export const impactAreas: ValueCard[] = [
   },
 ];
 
-/** Historias reales y autorizadas. Vacío hasta contar con ellas. */
-export const stories: Testimonial[] = [];
+/** Historias reales y autorizadas que también se presentan en Inicio. */
+export const stories: Testimonial[] = testimonials;
 
 /** Fotografías de actividades para "Comunidad en acción". */
 export const actionPhotos: Photo[] = [];

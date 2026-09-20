@@ -65,14 +65,16 @@ export interface Initiative {
 
 /**
  * El documento es explícito: solo testimonios reales y autorizados.
- * Mientras el arreglo esté vacío, la sección no se renderiza.
+ * Pueden ser una cita escrita o un video proporcionado por la persona.
  */
 export interface Testimonial {
   id: string;
-  quote: string;
+  quote?: string;
   name: string;
   context: string;
   photo?: string;
+  video?: string;
+  poster?: string;
 }
 
 /* ------------------------------------------------------------------ Fotografías */
