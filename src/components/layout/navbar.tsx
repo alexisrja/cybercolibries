@@ -113,7 +113,7 @@ export function Navbar() {
                             )}
                           >
                             {item.label}
-                            {current && <span aria-hidden className="size-1.5 rounded-full bg-teal" />}
+                            {current && <span aria-hidden className="size-1.5 rounded-full bg-accent" />}
                           </Link>
                         </ModalClose>
                       </li>

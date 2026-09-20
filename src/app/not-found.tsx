@@ -11,7 +11,7 @@ export default function NotFound() {
       <Container className="grid items-center gap-12 lg:grid-cols-2">
         <div>
           <p className="hud-label">
-            <span className="text-teal">error</span> 404 · ruta no encontrada
+            <span className="text-accent">error</span> 404 · ruta no encontrada
           </p>
           <h1 className="mt-5 font-display text-[clamp(2.2rem,6vw,4rem)] leading-[1.02] font-medium tracking-[-0.04em]">
             Este colibrí voló a otra flor.

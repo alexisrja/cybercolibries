@@ -16,7 +16,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
       {items.map((t, i) => (
         <Reveal as="li" key={t.id} delay={i * 0.08}>
           <figure className="card-iri flex h-full flex-col rounded-2xl p-6 sm:p-7">
-            <Quote className="size-6 text-violet" aria-hidden />
+            <Quote className="size-6 text-accent-deep" aria-hidden />
             <blockquote className="mt-5 text-[1.05rem] leading-relaxed text-fg">“{t.quote}”</blockquote>
             <figcaption className="mt-auto flex items-center gap-3 border-t border-line pt-5">
               {t.photo && (

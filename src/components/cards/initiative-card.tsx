@@ -12,10 +12,10 @@ export function InitiativeCard({ initiative, className }: { initiative: Initiati
   return (
     <article className={cn("card-iri group flex h-full flex-col rounded-2xl p-6 sm:p-7", className)}>
       <div className="flex items-start justify-between gap-4">
-        <span className="grid size-12 place-items-center rounded-xl border border-line-strong bg-elevated/60 text-teal">
+        <span className="grid size-12 place-items-center rounded-xl border border-line-strong bg-elevated/60 text-accent">
           <Icon name={initiative.icon} className="size-5" />
         </span>
-        {soon && <Badge tone="nectar">Próximamente</Badge>}
+        {soon && <Badge tone="info">Próximamente</Badge>}
       </div>
       <h3 className="mt-7 font-display text-xl leading-snug font-medium tracking-tight text-fg">{initiative.name}</h3>
       <p className="mt-3 leading-relaxed text-muted">{initiative.summary}</p>
@@ -26,7 +26,7 @@ export function InitiativeCard({ initiative, className }: { initiative: Initiati
           {...trackAttrs("cta_click", initiative.cta.label, `initiative:${initiative.slug}`)}
         >
           {initiative.cta.label}
-          <ArrowRight className="size-4 text-teal transition-transform group-hover:translate-x-1" aria-hidden />
+          <ArrowRight className="size-4 text-accent transition-transform group-hover:translate-x-1" aria-hidden />
         </Link>
       )}
     </article>

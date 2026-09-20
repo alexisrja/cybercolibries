@@ -37,17 +37,17 @@ export default function ParticipatePage() {
                 {...trackAttrs("join_click", path.title, "participate")}
               >
                 <div className="flex items-center justify-between">
-                  <span className="grid size-12 place-items-center rounded-xl border border-line-strong bg-elevated/60 text-teal transition-colors duration-300 group-hover:border-teal/50">
+                  <span className="grid size-12 place-items-center rounded-xl border border-line-strong bg-elevated/60 text-accent transition-colors duration-300 group-hover:border-accent/50">
                     <Icon name={path.icon} className="size-5" />
                   </span>
                   <ArrowRight
-                    className="size-5 -translate-x-2 text-teal opacity-0 transition-[opacity,transform] duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
+                    className="size-5 -translate-x-2 text-accent opacity-0 transition-[opacity,transform] duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100"
                     aria-hidden
                   />
                 </div>
                 <h3 className="mt-7 font-display text-lg font-medium tracking-tight text-fg">{path.title}</h3>
                 <p className="mt-2 leading-relaxed text-muted">{path.description}</p>
-                <span className="mt-auto pt-6 text-sm font-medium text-teal">{path.cta}</span>
+                <span className="mt-auto pt-6 text-sm font-medium text-accent">{path.cta}</span>
               </Link>
             </Reveal>
           ))}
@@ -65,7 +65,7 @@ export default function ParticipatePage() {
             />
             <Reveal delay={0.08} className="mt-10 space-y-6">
               <div className="flex gap-4">
-                <Mail className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden />
+                <Mail className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden />
                 <div>
                   <p className="hud-label">Correo</p>
                   <a
@@ -85,7 +85,7 @@ export default function ParticipatePage() {
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm text-muted transition-colors hover:border-teal/50 hover:text-fg"
+                        className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm text-muted transition-colors hover:border-accent/50 hover:text-fg"
                       >
                         <SocialIcon className="size-4" />
                         {label}

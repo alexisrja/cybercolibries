@@ -26,7 +26,7 @@ export function ValueGrid({
       {items.map((item, i) => (
         <Reveal as="li" key={item.title} delay={(i % 4) * 0.06}>
           <article className="card-iri h-full rounded-2xl p-6 sm:p-7">
-            <span className="grid size-11 place-items-center rounded-xl border border-line-strong bg-elevated/60 text-teal">
+            <span className="grid size-11 place-items-center rounded-xl border border-line-strong bg-elevated/60 text-accent">
               <Icon name={item.icon} className="size-5" />
             </span>
             <h3 className="mt-6 font-display text-lg font-medium tracking-tight text-fg">{item.title}</h3>

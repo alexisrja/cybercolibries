@@ -2,7 +2,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const controlBase =
-  "w-full rounded-xl border border-line-strong bg-elevated/60 px-4 text-[0.95rem] text-fg placeholder:text-subtle transition-[border-color,box-shadow] duration-200 outline-none focus-visible:border-teal focus-visible:shadow-[0_0_0_4px_color-mix(in_oklab,var(--teal)_18%,transparent)] focus-visible:outline-none aria-invalid:border-magenta disabled:opacity-60";
+  "w-full rounded-xl border border-line-strong bg-elevated/60 px-4 text-[0.95rem] text-fg placeholder:text-subtle transition-[border-color,box-shadow] duration-200 outline-none focus-visible:border-accent focus-visible:shadow-[0_0_0_4px_color-mix(in_oklab,var(--accent)_18%,transparent)] focus-visible:outline-none aria-invalid:border-danger disabled:opacity-60";
 
 export function Label({ className, ...props }: React.LabelHTMLAttributes<HTMLLabelElement>) {
   return <label className={cn("mb-2 block text-sm font-medium text-fg", className)} {...props} />;
@@ -39,7 +39,7 @@ export function Select({ className, children, ...props }: React.SelectHTMLAttrib
 export function FieldError({ id, children }: { id: string; children?: React.ReactNode }) {
   if (!children) return null;
   return (
-    <p id={id} className="mt-2 flex items-center gap-1.5 text-sm text-magenta">
+    <p id={id} className="mt-2 flex items-center gap-1.5 text-sm text-danger">
       <span aria-hidden className="font-mono">
         !
       </span>

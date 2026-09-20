@@ -31,7 +31,7 @@ export default async function CommunityPage() {
           ].map((item, i) => (
             <Reveal key={item.label} delay={i * 0.08}>
               <div className="hud-corners h-full rounded-2xl border border-line bg-elevated/40 p-7 sm:p-9">
-                <h3 className="hud-label text-teal">{item.label}</h3>
+                <h3 className="hud-label text-accent">{item.label}</h3>
                 <p className="mt-4 text-lg leading-snug font-medium tracking-tight text-fg sm:text-[1.3rem]">
                   {item.text}
                 </p>

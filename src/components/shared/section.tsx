@@ -46,7 +46,7 @@ export function SectionHeader({
     <Reveal className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && (
         <p className={cn("hud-label flex items-center gap-2", align === "center" && "justify-center")}>
-          <span aria-hidden className="h-px w-6 bg-teal" />
+          <span aria-hidden className="h-px w-6 bg-accent" />
           {eyebrow}
         </p>
       )}

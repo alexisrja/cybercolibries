@@ -94,7 +94,7 @@ function ContactFormInner({ preset }: { preset?: string }) {
       setStatus("error");
       track("contact_error", { status: res.status });
     } catch {
-      setServerError("No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.");
+      setServerError("No pudimos coinfo con el servidor. Revisa tu conexión e inténtalo de nuevo.");
       setStatus("error");
       track("contact_error", { status: 0 });
     }
@@ -106,9 +106,9 @@ function ContactFormInner({ preset }: { preset?: string }) {
         ref={statusRef}
         tabIndex={-1}
         role="status"
-        className="flex min-h-[28rem] flex-col items-center justify-center rounded-2xl border border-teal/30 bg-teal/5 p-8 text-center outline-none"
+        className="flex min-h-[28rem] flex-col items-center justify-center rounded-2xl border border-accent/30 bg-accent/5 p-8 text-center outline-none"
       >
-        <span className="grid size-16 place-items-center rounded-full border border-teal/40 text-teal shadow-[0_0_30px_-6px_var(--teal)]">
+        <span className="grid size-16 place-items-center rounded-full border border-accent/40 text-accent shadow-[0_0_30px_-6px_var(--accent)]">
           <CheckCircle2 className="size-7" aria-hidden />
         </span>
         <h3 className="mt-6 font-display text-2xl font-medium tracking-tight">Mensaje enviado</h3>
@@ -257,11 +257,11 @@ function ContactFormInner({ preset }: { preset?: string }) {
             onChange={(e) => set("consent", e.target.checked)}
             aria-invalid={Boolean(errors.consent)}
             aria-describedby={describedBy("consent")}
-            className="mt-1 size-4 shrink-0 accent-[var(--teal)]"
+            className="mt-1 size-4 shrink-0 accent-[var(--accent)]"
           />
           <span>
             Acepto que CyberColibríes use estos datos solo para responder mi mensaje, según el{" "}
-            <Link href="/privacidad" className="text-teal underline underline-offset-2">
+            <Link href="/privacidad" className="text-accent underline underline-offset-2">
               aviso de privacidad
             </Link>
             .
@@ -272,8 +272,8 @@ function ContactFormInner({ preset }: { preset?: string }) {
 
       <div aria-live="polite" role="status">
         {status === "error" && serverError && (
-          <p className="flex items-start gap-2.5 rounded-xl border border-magenta/30 bg-magenta/5 p-4 text-sm text-fg">
-            <AlertCircle className="mt-0.5 size-4 shrink-0 text-magenta" aria-hidden />
+          <p className="flex items-start gap-2.5 rounded-xl border border-danger/30 bg-danger/5 p-4 text-sm text-fg">
+            <AlertCircle className="mt-0.5 size-4 shrink-0 text-danger" aria-hidden />
             {serverError}
           </p>
         )}

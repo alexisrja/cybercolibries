@@ -53,7 +53,7 @@ export function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${label} (se abre en una pestaña nueva)`}
-                      className="inline-flex size-11 items-center justify-center rounded-full border border-line text-muted transition-[color,border-color,box-shadow] hover:border-teal/50 hover:text-fg hover:shadow-[0_0_18px_-6px_var(--teal)]"
+                      className="inline-flex size-11 items-center justify-center rounded-full border border-line text-muted transition-[color,border-color,box-shadow] hover:border-accent/50 hover:text-fg hover:shadow-[0_0_18px_-6px_var(--accent)]"
                     >
                       <Icon className="size-4" />
                     </a>

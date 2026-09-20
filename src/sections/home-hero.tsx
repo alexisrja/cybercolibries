@@ -12,7 +12,7 @@ function BrandStage() {
     <div className="relative mx-auto aspect-square w-52 sm:w-80 lg:w-full lg:max-w-[28rem]">
       <div
         aria-hidden
-        className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle_at_50%_45%,color-mix(in_oklab,var(--teal)_26%,transparent),transparent_62%),radial-gradient(circle_at_70%_70%,color-mix(in_oklab,var(--magenta)_18%,transparent),transparent_58%)] blur-2xl"
+        className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle_at_50%_45%,color-mix(in_oklab,var(--accent)_26%,transparent),transparent_62%),radial-gradient(circle_at_70%_70%,color-mix(in_oklab,var(--accent-soft)_22%,transparent),transparent_58%)] blur-2xl"
       />
       <svg aria-hidden viewBox="0 0 400 400" className="absolute inset-0 size-full">
         <g fill="none" className="stroke-line-strong">
@@ -33,7 +33,7 @@ function BrandStage() {
             cx={cx}
             cy={cy}
             r="3.5"
-            className="fill-bg stroke-teal motion-safe:animate-pulse-node"
+            className="fill-bg stroke-accent motion-safe:animate-pulse-node"
             strokeWidth="1.4"
             style={{ animationDelay: `${i * 0.45}s` }}
           />
@@ -60,7 +60,7 @@ export function HomeHero() {
       <Container className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
         <div className="min-w-0">
           <p className="hud-label flex items-center gap-2">
-            <span aria-hidden className="h-px w-6 bg-teal" />
+            <span aria-hidden className="h-px w-6 bg-accent" />
             {home.eyebrow}
           </p>
           <h1

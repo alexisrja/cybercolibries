@@ -35,7 +35,7 @@ export default async function InitiativesPage() {
         >
           <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
             <Reveal>
-              <span className="grid size-12 place-items-center rounded-xl border border-line-strong bg-elevated/60 text-teal">
+              <span className="grid size-12 place-items-center rounded-xl border border-line-strong bg-elevated/60 text-accent">
                 <Icon name={initiative.icon} className="size-5" />
               </span>
               <h2
@@ -45,7 +45,7 @@ export default async function InitiativesPage() {
                 {initiative.name}
               </h2>
               {initiative.status === "proximamente" && (
-                <Badge tone="nectar" className="mt-4">
+                <Badge tone="info" className="mt-4">
                   Próximamente
                 </Badge>
               )}

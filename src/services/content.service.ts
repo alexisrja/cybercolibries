@@ -10,7 +10,7 @@ import type { Initiative, Partner, Photo, Testimonial } from "@/types";
 
 /**
  * Única capa de acceso a contenido.
- * Hoy lee los datos estáticos de `src/data/content.ts`; para conectar un CMS
+ * Hoy lee los datos estáticos de `src/data/content.ts`; para coinfo un CMS
  * (Sanity, Strapi, Contentful) o Supabase basta con reescribir estas funciones
  * manteniendo la firma. Las páginas no cambian.
  */

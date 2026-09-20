@@ -27,7 +27,7 @@ export function PageHero({ eyebrow, title, description, breadcrumbs, children }:
       <div aria-hidden className="absolute inset-0 -z-10 bg-grid" />
       <div
         aria-hidden
-        className="absolute -top-40 left-1/2 -z-10 h-[28rem] w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,color-mix(in_oklab,var(--teal)_12%,transparent),transparent_65%)]"
+        className="absolute -top-40 left-1/2 -z-10 h-[28rem] w-[46rem] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,color-mix(in_oklab,var(--accent)_12%,transparent),transparent_65%)]"
       />
       <Container>
         {trail && (
@@ -55,7 +55,7 @@ export function PageHero({ eyebrow, title, description, breadcrumbs, children }:
         )}
         {eyebrow && (
           <p className="hud-label flex items-center gap-2">
-            <span aria-hidden className="h-px w-6 bg-teal" />
+            <span aria-hidden className="h-px w-6 bg-accent" />
             {eyebrow}
           </p>
         )}
