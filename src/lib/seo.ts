@@ -66,7 +66,6 @@ export function organizationSchema() {
     logo: absoluteUrl("/brand/logo-512.png"),
     description: siteConfig.description,
     slogan: siteConfig.tagline,
-    email: siteConfig.email,
     sameAs: Object.values(siteConfig.social),
     knowsAbout: [
       "Ciberseguridad",

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Quote } from "lucide-react";
+import { ArrowUpRight, Quote } from "lucide-react";
 import { Reveal } from "./reveal";
 import type { Testimonial } from "@/types";
 
@@ -12,14 +12,15 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
   if (items.length === 0) return null;
 
   return (
-    <ul className="grid items-start gap-4 md:grid-cols-2">
+    <ul className="grid items-stretch gap-4 md:grid-cols-2">
       {items.map((t, i) => (
-        <Reveal as="li" key={t.id} delay={i * 0.08}>
+        <Reveal as="li" key={t.id} delay={i * 0.08} className={t.video ? "md:col-span-2" : "h-full"}>
           <figure className="card-iri flex h-full flex-col rounded-2xl p-6 sm:p-7">
             {t.video ? (
               <video
                 className="mx-auto max-h-[34rem] w-auto max-w-full rounded-xl bg-black shadow-sm"
                 controls
+                controlsList="nodownload"
                 playsInline
                 preload="metadata"
                 poster={t.poster}
@@ -31,7 +32,23 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
             ) : (
               <>
                 <Quote className="size-6 text-accent-deep" aria-hidden />
-                {t.quote && <blockquote className="mt-5 text-[1.05rem] leading-relaxed text-fg">“{t.quote}”</blockquote>}
+                {t.quote && (
+                  <blockquote className="mt-5 whitespace-pre-line text-[1.05rem] leading-relaxed text-fg">
+                    “{t.quote}”
+                  </blockquote>
+                )}
+                {t.sourceUrl && (
+                  <a
+                    href={t.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-fg"
+                    aria-label={`Ver el testimonio completo de ${t.name} en LinkedIn (se abre en una pestaña nueva)`}
+                  >
+                    Testimonio completo
+                    <ArrowUpRight className="size-4" aria-hidden />
+                  </a>
+                )}
               </>
             )}
             <figcaption className="mt-auto flex items-center gap-3 border-t border-line pt-5">

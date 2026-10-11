@@ -1,12 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Icon } from "@/components/shared/icon";
 import { PageHero } from "@/components/shared/page-hero";
 import { Reveal } from "@/components/shared/reveal";
 import { Section } from "@/components/shared/section";
-import { ValueGrid } from "@/components/shared/value-grid";
 import { initiativesPage } from "@/data/content";
 import { trackAttrs } from "@/lib/analytics";
 import { buildMetadata } from "@/lib/seo";
@@ -24,28 +23,44 @@ export default async function InitiativesPage() {
 
   return (
     <>
-      <PageHero eyebrow="Iniciativas" title={initiativesPage.title} description={initiativesPage.intro} />
+      <PageHero
+        id="iniciativas-inicio"
+        eyebrow="Iniciativas"
+        title={initiativesPage.title}
+        description={initiativesPage.intro}
+      />
 
       {initiatives.map((initiative, index) => (
         <Section
           key={initiative.slug}
           id={initiative.slug}
           labelledBy={`${initiative.slug}-title`}
-          className={index % 2 === 1 ? "border-y border-line bg-elevated/30" : undefined}
+          className={
+            index % 2 === 1
+              ? "border-y border-line bg-elevated/30 py-7 sm:py-8 lg:py-10"
+              : "py-7 sm:py-8 lg:py-10"
+          }
         >
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
-            <Reveal>
-              <span className="grid size-12 place-items-center rounded-xl border border-line-strong bg-elevated/60 text-accent">
-                <Icon name={initiative.icon} className="size-5" />
-              </span>
-              <h2
-                id={`${initiative.slug}-title`}
-                className="mt-6 font-display text-[clamp(1.5rem,3.4vw,2.2rem)] leading-tight font-medium tracking-tight text-fg"
-              >
+          <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.45fr)] lg:gap-10">
+            <Reveal className="card-iri relative aspect-[4/3] w-full max-w-xl overflow-hidden rounded-2xl lg:max-w-none">
+              <h2 id={`${initiative.slug}-title`} className="sr-only">
                 {initiative.name}
               </h2>
+              {initiative.image && (
+                <Image
+                  src={initiative.image}
+                  alt={`Ilustración de ${initiative.name}`}
+                  fill
+                  sizes="(min-width: 1280px) 380px, (min-width: 1024px) 32vw, 100vw"
+                  className="object-cover"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-bg/20 via-transparent to-bg/10" aria-hidden />
               {initiative.status === "proximamente" && (
-                <Badge tone="info" className="mt-4">
+                <Badge
+                  tone="info"
+                  className="absolute top-4 right-4 bg-bg/90 text-accent-soft shadow-lg backdrop-blur-md"
+                >
                   Próximamente
                 </Badge>
               )}
@@ -54,7 +69,7 @@ export default async function InitiativesPage() {
             <Reveal delay={0.08}>
               <p className="text-[1.05rem] leading-relaxed text-muted sm:text-lg">{initiative.description}</p>
               {initiative.cta && (
-                <Button asChild className="mt-8">
+                <Button asChild className="mt-6">
                   <Link
                     href={initiative.cta.href}
                     {...trackAttrs("cta_click", initiative.cta.label, `initiatives:${initiative.slug}`)}
@@ -65,8 +80,6 @@ export default async function InitiativesPage() {
               )}
             </Reveal>
           </div>
-
-          {initiative.pillars && <ValueGrid items={initiative.pillars} className="mt-12" />}
         </Section>
       ))}
     </>

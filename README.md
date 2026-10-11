@@ -13,16 +13,15 @@ El contenido y la estructura siguen el documento **"Contenido web oficial · Cyb
 | `/comunidad` | Quiénes somos, misión y visión, principios, "Somos comunidad" y fotografías |
 | `/iniciativas` | Researcher Program, Colibrí Talks y Colibrí Mental |
 | `/iniciativas/researcher-program` | Detalle de la iniciativa: formación, práctica, mentoría y comunidad |
-| `/impacto` | Cómo se ve el impacto, historias, comunidad en acción y colaboraciones |
-| `/participa` | Cuatro formas de sumarse y formulario de contacto (`#contacto`) |
+| `/participa` | Cuatro formas de sumarse y contacto directo por LinkedIn (`#contacto`) |
 
 Más: `/privacidad`, `/terminos`, `/cookies`, página 404, `sitemap.xml`, `robots.txt`, `manifest.webmanifest`, imagen Open Graph y `/.well-known/security.txt`.
 
 ## Reglas de contenido que el código respeta
 
 - **Sin cifras inventadas.** No hay contadores ni métricas hasta que existan datos verificables.
-- **Sin testimonios de ejemplo.** `testimonials` y `stories` están vacíos a propósito: cuando se agreguen entradas reales y autorizadas en `src/data/content.ts`, las secciones aparecen solas.
-- **Sin fotos de stock.** `PhotoGrid` muestra un espacio reservado mientras no haya fotografías propias; al cargar imágenes reales, se convierte en mosaico.
+- **Testimonios reales.** Solo se publican testimonios compartidos y autorizados por integrantes de la comunidad.
+- **Fotografías propias.** La galería utiliza imágenes reales de sesiones, actividades y logros de la comunidad.
 - **Sin logotipos de aliados** hasta confirmar colaboración y autorización de marca.
 
 ## Stack
@@ -32,35 +31,34 @@ Más: `/privacidad`, `/terminos`, `/cookies`, página 404, `sitemap.xml`, `robot
 - Primitivas en estilo **shadcn/ui** (Radix + CVA) en `src/components/ui`
 - **Lucide** para iconos; los logos de redes son SVG propios
 - **Motion** (`motion/react`) con `LazyMotion` + `domAnimation`
-- **Zod** para validar el formulario en cliente y servidor
 
 ```bash
 npm run dev      # desarrollo
-npm run build    # build de producción (todo estático salvo /api/contact)
+npm run build    # build de producción
 npm run start
 npm run lint
 ```
 
-Copia `.env.example` a `.env.local`. Sin variables el sitio funciona: la analítica queda apagada y el contacto se registra en consola en desarrollo.
+Copia `.env.example` a `.env.local`. Sin variables el sitio funciona y la analítica queda apagada. El contacto se realiza directamente mediante la cuenta oficial de LinkedIn.
 
 ## Estructura
 
 ```text
 src/
- ├── app/               Una carpeta por página + metadata, sitemap, robots, OG, API
+ ├── app/               Una carpeta por página + metadata, sitemap, robots y OG
  ├── components/
- │   ├── ui/            Button, Badge, Field, Modal
+ │   ├── ui/            Button, Badge y Modal
  │   ├── brand/         BrandMark (logo oficial) y Logo
  │   ├── cards/         InitiativeCard
  │   ├── layout/        Navbar, Footer, Providers, ThemeToggle
  │   └── shared/        Section, SectionHeader, PageHero, ValueGrid, PhotoGrid,
  │                      Testimonials, CtaBand, Reveal, JsonLd, Icon
- ├── features/          contact (formulario + esquema), analytics
+ ├── features/          contacto por LinkedIn y analítica
  ├── sections/          HomeHero
- ├── services/          content.service (contenido) y contact.service (entrega)
+ ├── services/          content.service (contenido)
  ├── data/              content.ts — copy oficial en un solo lugar
  ├── hooks/             usePointerGlow
- ├── lib/               site, seo/schema.org, analytics, rate limit, utils
+ ├── lib/               site, seo/schema.org, analytics y utils
  ├── types/             dominio (index.ts) y futura plataforma (platform.ts)
  └── styles/            globals.css
 ```
@@ -81,7 +79,7 @@ src/
 
 - Metadata por página con `buildMetadata()`: canonical, Open Graph y Twitter/X Cards.
 - schema.org: `EducationalOrganization`, `WebSite`, `Course` en el Researcher Program y `BreadcrumbList` en páginas internas.
-- Foco visible, `aria-current` en navegación, áreas táctiles de 44 px y formulario con errores anunciados por lector de pantalla.
+- Foco visible, `aria-current` en navegación y controles táctiles accesibles.
 - `prefers-reduced-motion` respetado en CSS y en Motion.
 - Cabeceras de seguridad en `next.config.ts`.
 
@@ -91,9 +89,6 @@ src/
 
 ## Pendientes antes de publicar
 
-- [ ] Dominio definitivo, correo y perfiles sociales activos (`src/lib/site.ts`, `public/.well-known/security.txt`).
-- [ ] Testimonios e historias reales y autorizados (`src/data/content.ts`).
-- [ ] Fotografías propias de sesiones, mentorías y actividades.
+- [ ] Dominio definitivo (`src/lib/site.ts`, `public/.well-known/security.txt`).
 - [ ] Logotipos de aliados con autorización.
-- [ ] `CONTACT_WEBHOOK_URL` en producción para que el formulario entregue mensajes.
 - [ ] Revisión legal de privacidad, términos y cookies.

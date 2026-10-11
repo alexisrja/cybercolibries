@@ -22,14 +22,6 @@ export const XIcon = (p: P) => (
   </svg>
 );
 
-export const InstagramIcon = (p: P) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden {...p}>
-    <rect x="3" y="3" width="18" height="18" rx="5" />
-    <circle cx="12" cy="12" r="4" />
-    <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
-  </svg>
-);
-
 export const YouTubeIcon = (p: P) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...p}>
     <path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5a2.7 2.7 0 0 0-1.9 1.9C2 8.9 2 12 2 12s0 3.1.4 4.8a2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9c.4-1.7.4-4.8.4-4.8s0-3.1-.4-4.8ZM10 15.2V8.8l5.2 3.2-5.2 3.2Z" />
@@ -44,5 +36,4 @@ export const DiscordIcon = (p: P) => (
 
 export const socialIcons: Record<SocialNetwork, { label: string; Icon: ComponentType<P> }> = {
   linkedin: { label: "LinkedIn", Icon: LinkedInIcon },
-  instagram: { label: "Instagram", Icon: InstagramIcon },
 };

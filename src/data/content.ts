@@ -1,10 +1,10 @@
-import type { Initiative, Partner, ParticipationPath, Photo, Testimonial, ValueCard } from "@/types";
+import type { Initiative, ParticipationPath, Photo, Testimonial, ValueCard } from "@/types";
 
 /**
  * Copy oficial del sitio.
  * Fuente: documento "Contenido web oficial · CyberColibríes"
- * (estructura y textos literales para Inicio, Comunidad, Iniciativas,
- * Impacto y Participa).
+ * (estructura y textos literales para Inicio, Comunidad, Iniciativas y
+ * Participa).
  *
  * Reglas del documento que se respetan aquí:
  * - CyberColibríes se presenta como comunidad; el Researcher Program es una
@@ -72,11 +72,25 @@ export const whatWeDo: ValueCard[] = [
 export const testimonials: Testimonial[] = [
   {
     id: "karla-susana-martinez",
-    quote:
-      "Definitivamente, este curso fue el que me abrió las puertas al mundo de la ciberseguridad y me ayudó a conseguir mi primer empleo en dicha área.",
+    quote: [
+      "Hola, soy Karla Susana Martínez, ingeniera en telecomunicaciones y actualmente analista de ciberseguridad. Cuando decidí adentrarme en este campo, mis conocimientos eran muy básicos y no tenía claro por dónde comenzar. El curso impartido por Francisco Guadarrama fue una experiencia clave en mi formación, ya que combinó de manera clara la teoría con ejercicios prácticos, laboratorios tipo CTF y temas como OSINT y fundamentos de pentesting. Esta metodología permitió que cada clase fuera dinámica, retadora y, sobre todo, enfocada en aplicar los conocimientos adquiridos.",
+      "Además de la formación técnica, valoro especialmente la orientación profesional recibida sobre currículum, certificaciones, desarrollo de habilidades y cómo generar valor dentro de una organización. La combinación de exigencia, acompañamiento y disposición para resolver dudas me permitió desarrollar mayor confianza y pensamiento crítico. Este curso no solo me proporcionó las bases necesarias para continuar aprendiendo, sino que también fue fundamental para abrirme las puertas al mundo de la ciberseguridad y conseguir mi primer empleo en el área.",
+    ].join("\n\n"),
     name: "Karla Susana Martínez",
     context: "Analista de ciberseguridad · Primera generación",
     photo: "/testimonials/karla-martinez.jpg",
+    sourceUrl:
+      "https://www.linkedin.com/posts/cybercolibr%C3%ADes_caso-de-exitohola-soy-karla-susana-activity-7367751571608150016-vvY5?utm_source=share&utm_medium=member_desktop&rcm=ACoAADF1j-kByaidWwtv0be5iRkZ6dtn9jxNzPc",
+  },
+  {
+    id: "diana",
+    quote: [
+      "CyberColibríes es una comunidad que va más allá de compartir aspectos técnicos; busca acercar a sus alumnos al mundo de la ciberseguridad mediante las experiencias, aprendizajes y vivencias de sus ponentes. Sus pláticas permiten no solo explorar diversos temas, sino también conocer nuevas perspectivas y descubrir las múltiples posibilidades que ofrece este campo.",
+      "Ha sido muy especial formar parte de esta comunidad desde ambas perspectivas: primero como alumna, cuando recién comenzaba en esta área, y tiempo después como ponente, compartiendo mi experiencia junto con un colega de mi equipo. Más allá de la experiencia personal, ha sido muy significativo contribuir al crecimiento de quienes comienzan este camino.",
+    ].join("\n\n"),
+    name: "Diana",
+    context: "Alumna y ponente · CyberColibríes",
+    photo: "/testimonials/diana.jpg",
   },
   {
     id: "isaac-leyva",
@@ -135,12 +149,57 @@ export const values: ValueCard[] = [
   },
 ];
 
-/**
- * Fotografías reales de la comunidad (sesiones, mentorías, charlas…).
- * Vacío hasta contar con material propio y autorizado; el documento pide
- * priorizar imágenes reales sobre fotografías de stock.
- */
-export const communityPhotos: Photo[] = [];
+/** Fotografías reales de sesiones, actividades y logros de la comunidad. */
+export const communityPhotos: Photo[] = [
+  {
+    id: "premios-amcs-2026",
+    caption: "CyberColibríes, finalista en los Premios AMCS 2026.",
+    src: "/community/premios-amcs-2026.jpg",
+    alt: "Reconocimiento y participantes de CyberColibríes como finalistas en los Premios AMCS 2026",
+  },
+  {
+    id: "tercera-generacion-primera-sesion",
+    caption: "Primera sesión de la tercera generación de CyberColibríes.",
+    src: "/community/tercera-generacion-primera-sesion.png",
+    alt: "Publicación sobre la primera sesión virtual de la tercera generación de CyberColibríes",
+  },
+  {
+    id: "superficie-ataque-cti",
+    caption: "Sesión práctica sobre superficie de ataque desde Cyber Threat Intelligence.",
+    src: "/community/superficie-ataque-cti.png",
+    alt: "Sesión virtual de CyberColibríes sobre superficie de ataque desde CTI",
+  },
+  {
+    id: "introduccion-soc",
+    caption: "Introducción al SOC compartida con la comunidad.",
+    src: "/community/introduccion-soc.png",
+    alt: "Sesión virtual de introducción a un centro de operaciones de seguridad",
+  },
+  {
+    id: "analisis-correo-spoofing",
+    caption: "Análisis de intentos de extorsión mediante correo fraudulento.",
+    src: "/community/analisis-correo-spoofing.png",
+    alt: "Sesión práctica de análisis de correos electrónicos fraudulentos",
+  },
+  {
+    id: "curso-cyber-threat-intelligence",
+    caption: "Primera sesión del curso de Cyber Threat Intelligence.",
+    src: "/community/curso-cyber-threat-intelligence.png",
+    alt: "Clase virtual de introducción a Cyber Threat Intelligence",
+  },
+  {
+    id: "sesion-universidad-mexiquense",
+    caption: "Nuevo ciclo de aprendizaje con estudiantes de la Universidad Mexiquense del Bicentenario.",
+    src: "/community/sesion-universidad-mexiquense.png",
+    alt: "Encuentro virtual con estudiantes de la Universidad Mexiquense del Bicentenario",
+  },
+  {
+    id: "reto-osint",
+    caption: "Reto OSINT resuelto en comunidad.",
+    src: "/community/reto-osint.png",
+    alt: "Participantes de CyberColibríes completando un reto práctico de OSINT",
+  },
+];
 
 /* ------------------------------------------------------------------ Iniciativas */
 
@@ -154,12 +213,16 @@ export const initiatives: Initiative[] = [
   {
     slug: "researcher-program",
     name: "CyberColibrí Researcher Program",
+    image: "/initiatives/researcher-program.png",
     summary: "Ruta formativa para quienes quieren desarrollar sus primeras capacidades en ciberseguridad.",
     description:
       "Una ruta de formación para personas que buscan desarrollar sus primeras capacidades profesionales en ciberseguridad mediante contenido, práctica, acompañamiento y retos.",
     status: "activa",
     icon: "graduation-cap",
-    cta: { label: "Conocer el Researcher Program", href: "/iniciativas/researcher-program" },
+    cta: {
+      label: "Conocer el Researcher Program",
+      href: "/iniciativas/researcher-program#researcher-program-inicio",
+    },
     pillars: [
       { title: "Formación", description: "Una ruta progresiva desde fundamentos hasta capacidades prácticas.", icon: "book-open" },
       { title: "Práctica", description: "Ejercicios, laboratorios y escenarios para aplicar lo aprendido.", icon: "wrench" },
@@ -170,6 +233,7 @@ export const initiatives: Initiative[] = [
   {
     slug: "colibri-talks",
     name: "Colibrí Talks",
+    image: "/initiatives/colibri-talks.png",
     summary: "Charlas y sesiones para compartir conocimiento y experiencias.",
     description:
       "Charlas abiertas para la comunidad donde profesionales compartirán experiencias, conocimiento, herramientas y aprendizajes del mundo de la ciberseguridad. Sesiones creadas para aprender directamente de quienes trabajan, investigan y construyen dentro de la industria.",
@@ -179,6 +243,7 @@ export const initiatives: Initiative[] = [
   {
     slug: "colibri-mental",
     name: "Colibrí Mental",
+    image: "/initiatives/colibri-mental.png",
     summary: "Blog de noticias, herramientas e investigaciones creadas o seleccionadas por la comunidad.",
     description:
       "Nuestro espacio de conocimiento: un blog de noticias, herramientas, investigaciones, análisis y recursos creados o seleccionados por la comunidad. Un lugar para mantenernos curiosos, entender lo que ocurre en ciberseguridad y compartir conocimiento útil con otras personas.",
@@ -186,66 +251,6 @@ export const initiatives: Initiative[] = [
     icon: "newspaper",
   },
 ];
-
-/* ------------------------------------------------------------------ Impacto */
-
-export const impact = {
-  title: "El impacto se construye persona por persona.",
-  intro:
-    "CyberColibríes busca que más personas puedan acercarse a la ciberseguridad, desarrollar nuevas habilidades y encontrar una comunidad que acompañe su crecimiento.",
-  stories: {
-    title: "Historias que nos impulsan",
-    intro: "El impacto también se cuenta a través de las experiencias de quienes han formado parte de CyberColibríes.",
-  },
-  inAction: {
-    title: "Comunidad en acción",
-    lead: "Sesiones. Mentorías. Charlas. Retos. Aprendizaje. Colaboración.",
-  },
-  collaborations: {
-    title: "Colaboraciones",
-    body: "CyberColibríes está abierto a colaborar con universidades, comunidades, especialistas, empresas y organizaciones que compartan el objetivo de acercar conocimiento y oportunidades a más personas.",
-  },
-  closing: {
-    title: "Ayúdanos a llevar oportunidades a más personas.",
-    body: "El impacto crece cuando más personas deciden aprender, compartir o colaborar.",
-    cta: { label: "Participa", href: "/participa" },
-  },
-} as const;
-
-export const impactAreas: ValueCard[] = [
-  {
-    title: "Conocimiento accesible",
-    description:
-      "Acercamos contenidos, experiencias y espacios de aprendizaje a personas que quieren iniciar o fortalecer su camino en ciberseguridad.",
-    icon: "globe",
-  },
-  {
-    title: "Desarrollo de talento",
-    description:
-      "Creamos oportunidades para practicar, investigar, recibir retroalimentación y construir capacidades aplicables al mundo profesional.",
-    icon: "target",
-  },
-  {
-    title: "Comunidad",
-    description:
-      "Conectamos personas que están comenzando con otras que quieren enseñar, mentorizar, compartir experiencias o colaborar.",
-    icon: "users",
-  },
-  {
-    title: "Efecto multiplicador",
-    description: "Cada persona que aprende y posteriormente comparte lo aprendido ayuda a que el conocimiento llegue a alguien más.",
-    icon: "share",
-  },
-];
-
-/** Historias reales y autorizadas que también se presentan en Inicio. */
-export const stories: Testimonial[] = testimonials;
-
-/** Fotografías de actividades para "Comunidad en acción". */
-export const actionPhotos: Photo[] = [];
-
-/** Solo aliados con participación real y autorización para usar su marca. */
-export const partners: Partner[] = [];
 
 /* ------------------------------------------------------------------ Participa */
 
@@ -255,15 +260,14 @@ export const participate = {
     "No necesitas estar en el mismo punto profesional que los demás. Puedes venir a aprender, compartir lo que sabes, colaborar o ayudarnos a llevar conocimiento a nuevas comunidades.",
   chooseTitle: "Elige cómo quieres participar",
   otherIdea: {
-    title: "¿Tienes otra idea?",
-    body: "Si quieres proponer una charla, proyecto, colaboración, recurso o iniciativa que pueda generar impacto, queremos escucharte.",
+    title: "Cuéntanos cómo quieres participar",
+    body: "Escríbenos directamente por LinkedIn para conversar sobre aprendizaje, mentoría, charlas, proyectos o colaboraciones.",
+  },
+  linkedinGuide: {
+    cta: "Escribir por LinkedIn",
+    note: "Visita nuestra página y selecciona “Mensaje”. Cuéntanos brevemente quién eres y cómo te gustaría participar.",
   },
   quote: "No importa si vienes a aprender o a enseñar. Lo importante es que el conocimiento siga moviéndose.",
-  closing: {
-    title: "Tu lugar en la comunidad puede empezar hoy.",
-    body: "Aprende. Comparte. Colabora. Impacta.",
-    cta: { label: "Únete a la comunidad", href: "/participa#contacto" },
-  },
 } as const;
 
 export const participationPaths: ParticipationPath[] = [
@@ -273,6 +277,8 @@ export const participationPaths: ParticipationPath[] = [
     description: "Participa en nuestras actividades, contenidos, convocatorias y espacios de aprendizaje.",
     cta: "Únete a la comunidad",
     icon: "compass",
+    image: "/participa/quiero-aprender.png",
+    squareImage: "/participa/quiero-aprender-square.png",
   },
   {
     id: "compartir",
@@ -281,6 +287,8 @@ export const participationPaths: ParticipationPath[] = [
       "Si trabajas, investigas o tienes experiencia en algún área de tecnología o ciberseguridad, puedes compartirla con la comunidad.",
     cta: "Quiero compartir",
     icon: "megaphone",
+    image: "/participa/quiero-compartir-conocimiento.png",
+    squareImage: "/participa/quiero-compartir-conocimiento-square.png",
   },
   {
     id: "mentor",
@@ -289,6 +297,8 @@ export const participationPaths: ParticipationPath[] = [
       "Acompaña a personas que están comenzando, comparte experiencia, resuelve dudas y aporta retroalimentación para su desarrollo.",
     cta: "Quiero ser mentor",
     icon: "lightbulb",
+    image: "/participa/quiero-ser-mentor.png",
+    squareImage: "/participa/quiero-ser-mentor-square.png",
   },
   {
     id: "organizacion",
@@ -297,6 +307,8 @@ export const participationPaths: ParticipationPath[] = [
       "Universidades, comunidades, empresas y organizaciones pueden colaborar mediante difusión, espacios, conocimiento, herramientas o iniciativas conjuntas.",
     cta: "Hablemos",
     icon: "handshake",
+    image: "/participa/quiero-colaborar-organizacion.png",
+    squareImage: "/participa/quiero-colaborar-organizacion-square.png",
   },
 ];
 

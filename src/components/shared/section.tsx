@@ -15,7 +15,7 @@ interface SectionProps {
 
 export function Section({ id, className, children, labelledBy }: SectionProps) {
   return (
-    <section id={id} aria-labelledby={labelledBy} className={cn("relative py-16 sm:py-20 lg:py-24", className)}>
+    <section id={id} aria-labelledby={labelledBy} className={cn("relative py-10 sm:py-12 lg:py-14", className)}>
       <Container>{children}</Container>
     </section>
   );
@@ -56,7 +56,7 @@ export function SectionHeader({
           "font-display font-medium tracking-tight text-fg",
           eyebrow && "mt-4",
           Heading === "h2"
-            ? "text-[clamp(1.6rem,4vw,2.6rem)] leading-[1.12]"
+            ? "text-[1.45rem] leading-[1.12] sm:text-[clamp(1.6rem,4vw,2.6rem)]"
             : "text-[clamp(1.35rem,2.6vw,1.75rem)] leading-tight",
         )}
       >

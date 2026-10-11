@@ -54,7 +54,7 @@ export function HomeHero() {
     <section
       id="inicio"
       aria-labelledby="hero-title"
-      className="relative isolate overflow-hidden pt-24 pb-10 sm:pt-28 lg:pt-32 lg:pb-16"
+      className="relative isolate overflow-hidden pt-24 pb-4 sm:pt-28 sm:pb-6 lg:pt-32"
     >
       <div aria-hidden className="absolute inset-0 -z-10 bg-grid" />
       <Container className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">

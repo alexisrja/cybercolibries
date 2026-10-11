@@ -1,11 +1,10 @@
 import { InitiativeCard } from "@/components/cards/initiative-card";
-import { CtaBand, TaglineStrip } from "@/components/shared/cta-band";
+import { CtaBand } from "@/components/shared/cta-band";
 import { Reveal } from "@/components/shared/reveal";
 import { Section, SectionHeader } from "@/components/shared/section";
 import { Testimonials } from "@/components/shared/testimonials";
-import { ValueGrid } from "@/components/shared/value-grid";
 import { HomeHero } from "@/sections/home-hero";
-import { home, whatWeDo } from "@/data/content";
+import { home } from "@/data/content";
 import { buildMetadata } from "@/lib/seo";
 import { getInitiatives, getTestimonials } from "@/services/content.service";
 
@@ -23,7 +22,7 @@ export default async function HomePage() {
     <>
       <HomeHero />
 
-      <Section id="que-es" labelledBy="que-es-title">
+      <Section id="que-es" labelledBy="que-es-title" className="py-8 sm:py-10 lg:py-10">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
           <SectionHeader id="que-es-title" eyebrow="Comunidad" title={home.whatIs.title} />
           <Reveal delay={0.08} className="space-y-5 text-[1.05rem] leading-relaxed text-muted sm:text-lg">
@@ -32,20 +31,23 @@ export default async function HomePage() {
             ))}
           </Reveal>
         </div>
-        <ValueGrid items={whatWeDo} className="mt-12" />
       </Section>
 
-      <Section id="iniciativas" labelledBy="iniciativas-title" className="border-y border-line bg-elevated/30">
+      <Section
+        id="iniciativas"
+        labelledBy="iniciativas-title"
+        className="border-y border-line bg-elevated/30 py-10 sm:py-12 lg:py-14"
+      >
         <SectionHeader
           id="iniciativas-title"
           eyebrow="Iniciativas"
           title="Nuestras iniciativas"
           description="Distintas formas de aprender, colaborar y generar impacto en ciberseguridad."
         />
-        <ul className="mt-12 grid gap-4 md:grid-cols-3">
+        <ul className="mt-8 grid gap-4 sm:mt-10 md:grid-cols-3">
           {initiatives.map((initiative, i) => (
             <Reveal as="li" key={initiative.slug} delay={i * 0.07}>
-              <InitiativeCard initiative={initiative} />
+              <InitiativeCard initiative={initiative} variant="visual" />
             </Reveal>
           ))}
         </ul>
@@ -58,7 +60,7 @@ export default async function HomePage() {
             eyebrow="Testimonios"
             title="Historias reales de personas que forman parte de CyberColibríes."
           />
-          <div className="mt-12">
+          <div className="mt-8 sm:mt-10">
             <Testimonials items={testimonials} />
           </div>
         </Section>
@@ -72,9 +74,6 @@ export default async function HomePage() {
           description={home.idea.body}
           align="center"
         />
-        <div className="mt-6">
-          <TaglineStrip />
-        </div>
       </Section>
 
       <CtaBand {...home.closing} location="home_closing" />

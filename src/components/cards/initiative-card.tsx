@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -6,8 +7,62 @@ import { trackAttrs } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import type { Initiative } from "@/types";
 
-export function InitiativeCard({ initiative, className }: { initiative: Initiative; className?: string }) {
+export function InitiativeCard({
+  initiative,
+  className,
+  variant = "default",
+}: {
+  initiative: Initiative;
+  className?: string;
+  variant?: "default" | "visual";
+}) {
   const soon = initiative.status === "proximamente";
+
+  if (variant === "visual" && initiative.image) {
+    const image = (
+      <>
+        <Image
+          src={initiative.image}
+          alt={`Ilustración de ${initiative.name}`}
+          fill
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className="object-cover transition duration-500 group-hover:scale-[1.025]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg/25 via-transparent to-bg/10" aria-hidden />
+        {soon && (
+          <Badge tone="info" className="absolute top-4 right-4 bg-bg/90 text-accent-soft shadow-lg backdrop-blur-md">
+            Próximamente
+          </Badge>
+        )}
+        <div className="sr-only">
+          <h3>{initiative.name}</h3>
+          <p>{initiative.summary}</p>
+        </div>
+      </>
+    );
+
+    return (
+      <article
+        className={cn(
+          "card-iri group relative aspect-[4/3] h-full overflow-hidden rounded-2xl p-0",
+          className,
+        )}
+      >
+        {initiative.cta ? (
+          <Link
+            href={initiative.cta.href}
+            aria-label={initiative.cta.label}
+            className="absolute inset-0 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            {...trackAttrs("cta_click", initiative.cta.label, `initiative:${initiative.slug}`)}
+          >
+            {image}
+          </Link>
+        ) : (
+          image
+        )}
+      </article>
+    );
+  }
 
   return (
     <article className={cn("card-iri group flex h-full flex-col rounded-2xl p-6 sm:p-7", className)}>

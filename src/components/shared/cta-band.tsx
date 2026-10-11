@@ -9,7 +9,7 @@ import type { Cta } from "@/types";
 /** Cierre de página: una sola acción, sin ruido alrededor. */
 export function CtaBand({ title, body, cta, location }: { title: string; body: string; cta: Cta; location: string }) {
   return (
-    <section className="pb-20 sm:pb-24">
+    <section className="pb-14 sm:pb-16">
       <Container>
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-line-strong p-8 sm:p-12">
@@ -32,26 +32,5 @@ export function CtaBand({ title, body, cta, location }: { title: string; body: s
         </Reveal>
       </Container>
     </section>
-  );
-}
-
-/** Frase de cierre de la marca, usada como respiro entre secciones. */
-export function TaglineStrip() {
-  const words = ["Aprender.", "Practicar.", "Compartir.", "Impactar."];
-  return (
-    <Container>
-      <Reveal>
-        <p
-          className="flex flex-wrap justify-center gap-x-6 gap-y-2 py-10 text-center font-display text-[clamp(1.2rem,3.4vw,2.2rem)] font-medium tracking-tight"
-          aria-label="Aprender. Practicar. Compartir. Impactar."
-        >
-          {words.map((w, i) => (
-            <span key={w} aria-hidden className={i % 2 === 0 ? "text-fg" : "text-iri"}>
-              {w}
-            </span>
-          ))}
-        </p>
-      </Reveal>
-    </Container>
   );
 }

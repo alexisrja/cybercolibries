@@ -1,12 +1,9 @@
 import {
-  actionPhotos,
   communityPhotos,
   initiatives,
-  partners,
-  stories,
   testimonials,
 } from "@/data/content";
-import type { Initiative, Partner, Photo, Testimonial } from "@/types";
+import type { Initiative, Photo, Testimonial } from "@/types";
 
 /**
  * Única capa de acceso a contenido.
@@ -28,20 +25,6 @@ export async function getTestimonials(): Promise<Testimonial[]> {
   return testimonials;
 }
 
-/** Historias de Impacto. Mismo criterio que los testimonios. */
-export async function getStories(): Promise<Testimonial[]> {
-  return stories;
-}
-
 export async function getCommunityPhotos(): Promise<Photo[]> {
   return communityPhotos;
-}
-
-export async function getActionPhotos(): Promise<Photo[]> {
-  return actionPhotos;
-}
-
-/** Solo aliados con colaboración real y permiso de uso de marca. */
-export async function getPartners(): Promise<Partner[]> {
-  return partners;
 }

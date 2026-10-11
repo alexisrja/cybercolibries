@@ -53,6 +53,7 @@ export interface Initiative {
   slug: string;
   name: string;
   summary: string;
+  image?: string;
   description?: string;
   status: InitiativeStatus;
   icon: IconName;
@@ -75,6 +76,7 @@ export interface Testimonial {
   photo?: string;
   video?: string;
   poster?: string;
+  sourceUrl?: string;
 }
 
 /* ------------------------------------------------------------------ Fotografías */
@@ -106,6 +108,8 @@ export interface ParticipationPath {
   description: string;
   cta: string;
   icon: IconName;
+  image: string;
+  squareImage: string;
 }
 
 export interface SocialLinks {

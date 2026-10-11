@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Container } from "./section";
 import { JsonLd } from "./json-ld";
 import { breadcrumbSchema } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 
 interface Crumb {
   name: string;
@@ -11,19 +12,27 @@ interface Crumb {
 }
 
 interface PageHeroProps {
+  id?: string;
   eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
   breadcrumbs?: Crumb[];
   children?: ReactNode;
+  className?: string;
 }
 
-/** Cabecera común de las páginas internas: una sola idea, mucho aire. */
-export function PageHero({ eyebrow, title, description, breadcrumbs, children }: PageHeroProps) {
+/** Cabecera común de las páginas internas: una sola idea y espaciado contenido. */
+export function PageHero({ id, eyebrow, title, description, breadcrumbs, children, className }: PageHeroProps) {
   const trail = breadcrumbs ? [{ name: "Inicio", path: "/" }, ...breadcrumbs] : null;
 
   return (
-    <header className="relative isolate overflow-hidden border-b border-line pt-28 pb-14 sm:pt-36 sm:pb-20">
+    <header
+      id={id}
+      className={cn(
+        "relative isolate overflow-hidden border-b border-line pt-24 pb-10 sm:pt-28 sm:pb-12 lg:pt-28 lg:pb-12",
+        className,
+      )}
+    >
       <div aria-hidden className="absolute inset-0 -z-10 bg-grid" />
       <div
         aria-hidden
@@ -59,7 +68,7 @@ export function PageHero({ eyebrow, title, description, breadcrumbs, children }:
             {eyebrow}
           </p>
         )}
-        <h1 className="mt-5 max-w-4xl font-display text-[clamp(1.9rem,5vw,3.4rem)] leading-[1.08] font-medium tracking-tight text-fg">
+        <h1 className="mt-5 max-w-4xl font-display text-[1.7rem] leading-[1.08] font-medium tracking-tight text-fg sm:text-[clamp(1.9rem,5vw,3.4rem)]">
           {title}
         </h1>
         {description && <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{description}</p>}

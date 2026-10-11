@@ -35,7 +35,11 @@ export default function TermsPage() {
       </ul>
       <h2>Contacto</h2>
       <p>
-        Dudas sobre estos términos: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+        Si tienes dudas sobre estos términos, escríbenos mediante la{" "}
+        <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">
+          cuenta oficial de CyberColibríes en LinkedIn
+        </a>
+        .
       </p>
     </LegalPage>
   );

@@ -19,8 +19,8 @@ export default function PrivacyPage() {
     >
       <h2>Qué datos recopilamos</h2>
       <p>
-        Solo los que nos compartes a través del formulario de contacto o de postulación: nombre, correo electrónico,
-        organización (opcional), el motivo de contacto y tu mensaje.
+        Este sitio no cuenta actualmente con formularios de contacto. Si decides escribirnos por LinkedIn, el tratamiento
+        de la información que compartas también estará sujeto a las políticas de esa plataforma.
       </p>
       <h2>Para qué los usamos</h2>
       <ul>
@@ -41,8 +41,11 @@ export default function PrivacyPage() {
       </p>
       <h2>Tus derechos</h2>
       <p>
-        Puedes solicitar acceso, rectificación, cancelación u oposición al tratamiento de tus datos escribiendo a{" "}
-        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+        Puedes solicitar acceso, rectificación, cancelación u oposición al tratamiento de tus datos mediante la{" "}
+        <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">
+          cuenta oficial de CyberColibríes en LinkedIn
+        </a>
+        .
       </p>
     </LegalPage>
   );

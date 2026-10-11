@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/comunidad", priority: 0.9, freq: "monthly" },
     { path: "/iniciativas", priority: 0.9, freq: "monthly" },
     { path: "/iniciativas/researcher-program", priority: 0.8, freq: "monthly" },
-    { path: "/impacto", priority: 0.8, freq: "monthly" },
     { path: "/participa", priority: 0.9, freq: "monthly" },
     { path: "/privacidad", priority: 0.2, freq: "yearly" },
     { path: "/terminos", priority: 0.2, freq: "yearly" },
