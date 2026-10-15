@@ -58,6 +58,7 @@ export default function ParticipatePage() {
         eyebrow="Participa"
         title={participate.chooseTitle}
         description={participate.intro}
+        breadcrumbs={[{ name: "Participa", path: "/participa" }]}
         className="pt-24 pb-10 sm:pt-28 sm:pb-12 lg:pt-32 lg:pb-14"
       >
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10">

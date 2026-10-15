@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { CtaBand } from "@/components/shared/cta-band";
 import { CommunityCarousel } from "@/components/shared/community-carousel";
 import { Reveal } from "@/components/shared/reveal";
@@ -31,6 +32,7 @@ export default async function CommunityPage() {
         />
         <Container className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(26rem,1.1fr)] lg:gap-12 xl:gap-16">
           <Reveal>
+            <Breadcrumbs items={[{ name: "Comunidad", path: "/comunidad" }]} />
             <p className="hud-label flex items-center gap-2">
               <span aria-hidden className="h-px w-6 bg-accent" />
               Comunidad

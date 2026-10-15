@@ -28,6 +28,7 @@ export default async function InitiativesPage() {
         eyebrow="Iniciativas"
         title={initiativesPage.title}
         description={initiativesPage.intro}
+        breadcrumbs={[{ name: "Iniciativas", path: "/iniciativas" }]}
       />
 
       {initiatives.map((initiative, index) => (

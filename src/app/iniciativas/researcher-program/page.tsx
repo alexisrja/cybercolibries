@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { CtaBand } from "@/components/shared/cta-band";
 import { JsonLd } from "@/components/shared/json-ld";
 import { Reveal } from "@/components/shared/reveal";
@@ -112,6 +113,12 @@ export default function ResearcherProgramPage() {
         <Container>
           <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.75fr)] lg:gap-12 xl:gap-16">
             <Reveal>
+              <Breadcrumbs
+                items={[
+                  { name: "Iniciativas", path: "/iniciativas" },
+                  { name: "Researcher Program", path: "/iniciativas/researcher-program" },
+                ]}
+              />
               <h1
                 id="researcher-title"
                 className="max-w-3xl font-display text-[1.75rem] leading-[1.08] font-medium tracking-tight text-fg sm:text-[clamp(2rem,5vw,3.4rem)]"
@@ -217,10 +224,28 @@ export default function ResearcherProgramPage() {
           provider: { "@id": organizationId },
           educationalLevel: "Introductorio",
           timeRequired: "P7M",
+          /* Gratuito: requisito de Google para el resultado enriquecido de cursos. */
+          isAccessibleForFree: true,
+          offers: {
+            "@type": "Offer",
+            price: 0,
+            priceCurrency: "MXN",
+            category: "Free",
+            availability: "https://schema.org/InStock",
+            url: absoluteUrl("/participa"),
+          },
+          teaches: modules.map((module) => module.title),
+          occupationalCategory: "Analista Junior de Ciberseguridad",
+          audience: {
+            "@type": "EducationalAudience",
+            educationalRole: "student",
+          },
           hasCourseInstance: {
             "@type": "CourseInstance",
             courseMode: ["online", "blended"],
             courseWorkload: "PT20H",
+            inLanguage: "es",
+            location: { "@type": "VirtualLocation", url: absoluteUrl("/iniciativas/researcher-program") },
           },
         }}
       />

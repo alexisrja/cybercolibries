@@ -32,6 +32,24 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  /**
+   * Cualquier host `*.vercel.app` que sirva producción es un duplicado del
+   * sitio: un 301 consolida la autoridad en el dominio oficial. Solo se emite
+   * en producción, porque los despliegues de preview viven en ese dominio y
+   * deben seguir siendo accesibles.
+   */
+  async redirects() {
+    if (process.env.VERCEL_ENV !== "production") return [];
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: ".*\\.vercel\\.app" }],
+        destination: "https://cybercolibries.org/:path*",
+        // 301 explícito: algunos rastreadores y scrapers antiguos no siguen un 308.
+        statusCode: 301,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
