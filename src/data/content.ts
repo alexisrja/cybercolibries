@@ -1,4 +1,4 @@
-import type { Initiative, ParticipationPath, Photo, Testimonial, ValueCard } from "@/types";
+import type { FaqItem, Initiative, ParticipationPath, Photo, Testimonial, ValueCard } from "@/types";
 
 /**
  * Copy oficial del sitio.
@@ -319,3 +319,70 @@ export const participationLabels: Record<ParticipationPath["id"], string> = {
   organizacion: "Quiero colaborar como organización",
   otro: "Tengo otra idea",
 };
+
+/* ------------------------------------------------------------------ Preguntas frecuentes */
+
+export const faqSection = {
+  eyebrow: "Preguntas frecuentes",
+  title: "Dudas antes de dar el primer paso",
+  description:
+    "Lo que más nos preguntan sobre la comunidad, el Researcher Program y las formas de participar.",
+} as const;
+
+/**
+ * Preguntas frecuentes de la página Participa.
+ * Cada respuesta se compone únicamente con afirmaciones que ya están en el
+ * copy oficial (Inicio, Comunidad, Iniciativas, Researcher Program y
+ * Participa). No se añaden fechas de convocatoria, requisitos, sedes ni
+ * cifras: lo que el sitio no afirma, aquí no se responde.
+ */
+export const faqs: FaqItem[] = [
+  {
+    id: "que-es-cybercolibries",
+    question: "¿Qué es CyberColibríes?",
+    answer:
+      "CyberColibríes es una comunidad enfocada en acercar la ciberseguridad a estudiantes, personas que comienzan su carrera y quienes buscan desarrollar nuevas habilidades tecnológicas. Creemos en aprender haciendo, compartir conocimiento y generar oportunidades de crecimiento mediante educación, práctica, mentoría y colaboración.",
+  },
+  {
+    id: "a-quien-va-dirigida",
+    question: "¿A quién va dirigida la comunidad?",
+    answer:
+      "La comunidad reúne estudiantes, profesionales, mentores y personas interesadas en tecnología y ciberseguridad. No necesitas estar en el mismo punto profesional que los demás: puedes venir a aprender, compartir lo que sabes, colaborar o ayudarnos a llevar conocimiento a nuevas comunidades.",
+  },
+  {
+    id: "que-es-researcher-program",
+    question: "¿Qué es el CyberColibrí Researcher Program?",
+    answer:
+      "Es una iniciativa educativa gratuita impulsada por CyberColibríes: una ruta formativa de siete meses, de nivel introductorio y modalidad teórico-práctica o híbrida, con 14 sesiones prácticas virtuales y 20 horas de contenido bajo demanda. Está orientada a personas que desean construir sus primeras capacidades en ciberseguridad y su perfil de egreso es Analista Junior de Ciberseguridad.",
+  },
+  {
+    id: "costo-researcher-program",
+    question: "¿El Researcher Program tiene algún costo?",
+    answer:
+      "No. El CyberColibrí Researcher Program es una iniciativa educativa gratuita impulsada por CyberColibríes.",
+  },
+  {
+    id: "modulos-researcher-program",
+    question: "¿Qué módulos incluye el Researcher Program?",
+    answer:
+      "La ruta se compone de ocho módulos: Fundamentos de Tecnologías de la Información y Ciberseguridad; Redes e Infraestructura Tecnológica; Gestión de Vulnerabilidades; Hacking Ético; Monitoreo de Seguridad; Ciberinteligencia de Amenazas; Respuesta a Incidentes, e Informática Forense. Parte de la tecnología y avanza hacia las principales disciplinas de la ciberseguridad.",
+  },
+  {
+    id: "experiencia-previa",
+    question: "¿Necesito experiencia previa en ciberseguridad?",
+    answer:
+      "El Researcher Program es de nivel introductorio y su ruta parte de los fundamentos de tecnologías de la información antes de avanzar hacia las disciplinas de ciberseguridad. En la comunidad hay espacio para comenzar, preguntar, practicar, compartir lo que sabes y crecer junto a otras personas.",
+  },
+  {
+    id: "como-participar",
+    question: "¿Cómo puedo participar en CyberColibríes?",
+    answer:
+      "Hay cuatro formas de sumarse: aprender, participando en nuestras actividades, contenidos y convocatorias; compartir conocimiento, si trabajas o investigas en alguna área de tecnología o ciberseguridad; ser mentor, acompañando a personas que están comenzando; o colaborar como organización —universidades, comunidades, empresas y organizaciones— mediante difusión, espacios, conocimiento, herramientas o iniciativas conjuntas. Si tienes otra idea, escríbenos por LinkedIn: visita nuestra página, selecciona “Mensaje” y cuéntanos brevemente quién eres y cómo te gustaría participar.",
+  },
+  {
+    id: "colibri-talks-y-mental",
+    question: "¿Qué son Colibrí Talks y Colibrí Mental?",
+    answer:
+      "Son dos iniciativas que aún están por comenzar. Colibrí Talks serán charlas abiertas para la comunidad, donde profesionales compartirán experiencias, conocimiento, herramientas y aprendizajes del mundo de la ciberseguridad. Colibrí Mental será nuestro blog de noticias, herramientas, investigaciones, análisis y recursos creados o seleccionados por la comunidad.",
+  },
+];

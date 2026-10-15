@@ -1,13 +1,16 @@
 import { getImageProps } from "next/image";
 import Link from "next/link";
+import { Faq } from "@/components/shared/faq";
+import { JsonLd } from "@/components/shared/json-ld";
 import { PageHero } from "@/components/shared/page-hero";
 import { Reveal } from "@/components/shared/reveal";
 import { Section, SectionHeader } from "@/components/shared/section";
 import { LinkedInContactCard } from "@/features/contact/linkedin-contact-card";
-import { participate, participationPaths } from "@/data/content";
+import { faqSection, participate, participationPaths } from "@/data/content";
 import { trackAttrs } from "@/lib/analytics";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, faqSchema } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
+import { getFaqs } from "@/services/content.service";
 import type { ParticipationPath } from "@/types";
 
 export const metadata = buildMetadata({
@@ -50,7 +53,9 @@ function ParticipationArtwork({ path }: { path: ParticipationPath }) {
   );
 }
 
-export default function ParticipatePage() {
+export default async function ParticipatePage() {
+  const faqs = await getFaqs();
+
   return (
     <>
       <PageHero
@@ -75,6 +80,21 @@ export default function ParticipatePage() {
           ))}
         </ul>
       </PageHero>
+
+      {/* Las dudas se resuelven antes del CTA de contacto, no después. */}
+      <Section
+        id="preguntas-frecuentes"
+        labelledBy="preguntas-frecuentes-title"
+        className="border-t border-line"
+      >
+        <SectionHeader
+          id="preguntas-frecuentes-title"
+          eyebrow={faqSection.eyebrow}
+          title={faqSection.title}
+          description={faqSection.description}
+        />
+        <Faq items={faqs} className="mt-8 sm:mt-10" />
+      </Section>
 
       <Section
         id="contacto"
@@ -108,6 +128,8 @@ export default function ParticipatePage() {
           </div>
         </Reveal>
       </Section>
+
+      <JsonLd data={faqSchema(faqs)} />
     </>
   );
 }

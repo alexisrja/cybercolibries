@@ -1,9 +1,10 @@
 import {
   communityPhotos,
+  faqs,
   initiatives,
   testimonials,
 } from "@/data/content";
-import type { Initiative, Photo, Testimonial } from "@/types";
+import type { FaqItem, Initiative, Photo, Testimonial } from "@/types";
 
 /**
  * Única capa de acceso a contenido.
@@ -27,4 +28,9 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 
 export async function getCommunityPhotos(): Promise<Photo[]> {
   return communityPhotos;
+}
+
+/** Preguntas frecuentes de Participa. Alimentan tanto la sección visible como su `FAQPage`. */
+export async function getFaqs(): Promise<FaqItem[]> {
+  return faqs;
 }

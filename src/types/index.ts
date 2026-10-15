@@ -112,6 +112,19 @@ export interface ParticipationPath {
   squareImage: string;
 }
 
+/* ------------------------------------------------------------------ Preguntas frecuentes */
+
+/**
+ * Pregunta frecuente y su respuesta.
+ * Las respuestas se redactan solo con lo que el sitio ya afirma: el schema
+ * `FAQPage` exige que el mismo texto esté visible en la página.
+ */
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
 export interface SocialLinks {
   linkedin?: string;
   github?: string;

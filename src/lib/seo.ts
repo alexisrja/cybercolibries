@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { FaqItem } from "@/types";
 import { absoluteUrl, siteConfig } from "./site";
 
 interface BuildMetadataInput {
@@ -113,6 +114,28 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
       position: i + 1,
       name: item.name,
       item: absoluteUrl(item.path),
+    })),
+  };
+}
+
+/**
+ * `FAQPage` para un bloque de preguntas frecuentes.
+ * Google solo lo considera válido si las mismas preguntas y respuestas están
+ * visibles en la página, así que se construye desde el contenido que se
+ * renderiza, no desde una lista aparte.
+ */
+export function faqSchema(items: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: "es",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
     })),
   };
 }
